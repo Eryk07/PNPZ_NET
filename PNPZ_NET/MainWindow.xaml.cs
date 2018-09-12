@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PNPZ_NET
 {
@@ -35,12 +36,21 @@ namespace PNPZ_NET
             //    _index = 0;
 
             //textBlock.Text = tab[_index];
-
-            for (int i = 0; i < tab.Length; i++)
+            var btn = sender as Button;
+            btn.IsEnabled = false;
+            int it = 0;
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+            timer.Tick += (sender2, args) =>
             {
-                textBlock.Text = tab[i];
-                System.Threading.Thread.Sleep(100);
-            }
+                textBlock.Text = tab[it++];
+                if (it == tab.Length)
+                {
+                    timer.Stop();
+                    textBlock.Text = "";
+                    btn.IsEnabled = true;
+                }
+            };
+            timer.Start();
         }
 
     }
