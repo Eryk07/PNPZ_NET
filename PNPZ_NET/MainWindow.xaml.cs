@@ -28,10 +28,11 @@ namespace PNPZ_NET
         }
         // private int _index = -1;
         //Text text = new Text();
-        private string line = "Wtyczka do Windowsa umożliwiająca wyświetlanie zaznaczonego tekstu metodą szybkiego czytania - tekst z dużą prędkością jest wyświetlany po kilka słów lub w formie wężyka. Wtyczka będzie korzystać z Windows Animation Manager.";
+        // private string line = "Wtyczka do Windowsa umożliwiająca wyświetlanie zaznaczonego tekstu metodą szybkiego czytania - tekst z dużą prędkością jest wyświetlany po kilka słów lub w formie wężyka. Wtyczka będzie korzystać z Windows Animation Manager.";
+        private string line = Text.GetLineFromClipBoard();
         //Text.cut_line stringTab;
         // stringTab = Text.separated_line(line);
-        private string[] tab = { "Dupa", "debil", "gamoń", "gapciok" };
+        private string[] tab = { "Wczytaj","coś!" };
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -63,7 +64,21 @@ namespace PNPZ_NET
 
         private void Button_Click_Clipboard(object sender, RoutedEventArgs e)
         {
-            //tab=
+            Text.cut_line stringTab;
+            stringTab = Text.separated_line(line);
+            tab = stringTab.words;
         }
+
+        private void Period_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void Count_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        
     }
 }

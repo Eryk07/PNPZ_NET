@@ -109,7 +109,7 @@ namespace PNPZ_NET
         //    file.close();
         //}
 
-        public string GetLineFromClipBoard()
+        public static string GetLineFromClipBoard()
         {
             var textFromClipBoard = Clipboard.GetText();
             var firstLine = textFromClipBoard.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
