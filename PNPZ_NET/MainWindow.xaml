@@ -5,31 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PNPZ_NET"
         mc:Ignorable="d"
-        Title="FastReading" Height="300" Width="400">
+        Title="Szybkie czytanie" Height="300" Width="400">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="372" Height="106" FontSize="30" Margin="10,0"/>
-        <!--<TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="262,136,0,0"/>-->
-
-        <Button Content="Start!" FontWeight="Bold" Background="DarkSeaGreen" HorizontalAlignment="Center" Margin="233,143,10,78" VerticalAlignment="Center" Width="149" Click="Button_Click" RenderTransformOrigin="0.233,0.483" Height="48" FontSize="22"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="372" Height="128" FontSize="30" Margin="10,10,10,0"/>
+      
+        <Button Content="Start!" FontWeight="Bold" Background="DarkSeaGreen" HorizontalAlignment="Center" Margin="233,143,10,78" VerticalAlignment="Center" Width="149" Click="Button_Click_Start" RenderTransformOrigin="0.233,0.483" Height="48" FontSize="22"/>
         <Button Content="Wczytaj ze schowka" HorizontalAlignment="Center" Margin="262,208,10,0" VerticalAlignment="Top" Width="120" Height="32" Click="Button_Click_Clipboard"/>
 
         <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,143,182,10" Height="116" Width="190">
             <Label Height="10" />
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Slider  Maximum="1000" Minimum="100" TickFrequency="50" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136" IsSnapToTickEnabled="True" Name="Period" ValueChanged="Period_ValueChanged"/>
+                <Slider  Maximum="1000" Minimum="100" Value="550" TickFrequency="50" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136" IsSnapToTickEnabled="True" Name="Period" />
                 <TextBox HorizontalAlignment="Right" Text="{Binding Value, ElementName=Period, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="40" Height="23" />
             </StackPanel>
             <Label Height="27"  HorizontalAlignment="Center" Content="Okres [ms]" Margin="54,0" Width="82"/>
 
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                <Slider  Maximum="4" Minimum="1" TickFrequency="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136" IsSnapToTickEnabled="True" x:Name="Count" ValueChanged="Count_ValueChanged"/>
+                <Slider  Maximum="4" Minimum="1" TickFrequency="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136" IsSnapToTickEnabled="True" x:Name="Count" />
                 <TextBox HorizontalAlignment="Right" Text="{Binding Value, ElementName=Count, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Width="40" Height="24" />
             </StackPanel>
             <Label Height="25" HorizontalAlignment="Center" Content="Liczba słów" Width="82" Margin="54,0" VerticalAlignment="Center"/>
         </StackPanel>
-
-
-
 
     </Grid>
 </Window>

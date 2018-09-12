@@ -9,41 +9,8 @@ namespace PNPZ_NET
 {
     class Text
     {
-        public struct cut_line { public string[] words; public int count; };
-        //string line(string filename)
-        //{ //display one line
-        //    ifstream file(filename.c_str()); //open file
-        //    string line;
-
-        //    if (!file.is_open())
-        //        return NULL;        //if file doesn't exist
-
-        //    if (file.eof())
-        //        return NULL;        //if there's no more words
-
-        //    getline(file, line);
-
-        //    file.close();
-        //    return line;
-        //}
-
-        //int lenght(string inputline)
-        //{  //measure line length ->cause .length() and .size() weren't working xD
-        //    int i = 0;
-
-        //    do
-        //    {
-
-        //        if ((inputline[i]) !=null)
-        //            i++;
-
-        //    } while ((inputline[i]) !=null);
-
-        //    return i;
-        //}
-
-        public static cut_line separated_line(string line)
-        {   //separating word from line
+        public static string[] SeparatedLine(string line)
+        {   //separating words from line
 
             int spaces = 0;               //counting spaces
             for (int i = 0; i < line.Length; i++)
@@ -51,70 +18,51 @@ namespace PNPZ_NET
                     spaces++;
 
             int words = spaces + 1;       //amount of words in line
-            cut_line output = new cut_line();
+            
+            string[] cutline = new string[words];   //returned tab of words
 
-            string[] cutline = new string[words];
-
-            string tmp = "";
+            string tmpwrd = ""; //temporary word variable
             int j = 0;
             for (int i = 0; i < line.Length; i++)
             {  //filling up table with words
-                if ((line[i]) != ' ')
-                    tmp = tmp + line[i];
+                if ((line[i]) != ' ')   //if it's not space, add character to temporary word
+                    tmpwrd = tmpwrd + line[i];
                 else
-                {
-                    cutline[j] = tmp;
-                    tmp = "";
-                    j++;
+                { 
+                    cutline[j] = tmpwrd;   //else, add temporary word to current position in tab of words 
+                    tmpwrd = "";    //clean temporary word
+                    j++;    //next word in tab
                 }
 
             }
-            cutline[j] = tmp;
-
-            output.words = cutline;
-            output.count = words;
-
-            return output;
+            cutline[j] = tmpwrd;    //last word if there's no space
+           
+            return cutline;
         }
 
-        //void displaying(string filename)
-        //{  // display text
-        //    ifstream file(filename.c_str());
-        //    string line1;
-        //    int time = 500; //millisecond
-        //    if (!file.is_open())
-        //        cout << "there is no such a file or directory \n";      //if file doesn't exist
-
-        //    else if (file.eof())
-        //        cout << "file is empty";
-
-        //    else
-        //        do
-        //        {
-        //            getline(file, line1);
-        //            cut_line input = separated_line(line1);
-
-        //            string* table = input.line;
-        //            int N = input.words;
-
-        //            for (int i = 0; i < N; i++)
-        //            {
-        //                cout << table[i] << endl;
-        //                Sleep(time);
-        //                system("cls");
-        //            }
-        //            delete[] input.line;
-        //        } while (!(file.eof()));
-
-        //    file.close();
-        //}
-
         public static string GetLineFromClipBoard()
-        {
-            var textFromClipBoard = Clipboard.GetText();
-            var firstLine = textFromClipBoard.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+        {   //get line in string from clipboard
+            var textFromClipBoard = Clipboard.GetText();    //get data from clipboard
+            var firstLine = textFromClipBoard.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries) //convert data into string
                 .First();
             return firstLine;
+        }
+
+        public static string WordsAmount (string[] words, int count,int iterator)
+        { //make line with specified amount of words
+            string output=""; //returned string
+
+            for (int i = iterator; i < iterator + count; i++)   
+            {
+                if (i >= words.Length) //clean and break if there's no more words
+                {
+                    output = "";
+                    break;
+                }
+                else      //else, add word to line
+                    output += words[i] + " ";
+            }
+            return output;
         }
     }
 }

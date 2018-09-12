@@ -14,71 +14,49 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 namespace PNPZ_NET
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Class MainWindow includes activators from UI and use functions from class Text to make app working properly
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow()         
         {
             InitializeComponent();
         }
-        // private int _index = -1;
-        //Text text = new Text();
-        // private string line = "Wtyczka do Windowsa umożliwiająca wyświetlanie zaznaczonego tekstu metodą szybkiego czytania - tekst z dużą prędkością jest wyświetlany po kilka słów lub w formie wężyka. Wtyczka będzie korzystać z Windows Animation Manager.";
-        private string line = Text.GetLineFromClipBoard();
-        //Text.cut_line stringTab;
-        // stringTab = Text.separated_line(line);
-        private string[] tab = { "Wczytaj","coś!" };
+      
+        private string line;    // line of text
+     
+        private string[] stringTab = { "Wczytaj","coś","ze","schowka!",":)" }; //default tab of text
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Start(object sender, RoutedEventArgs e)   //action from Start! button
         {
-
-            //_index++;
-            //if (_index >= tab.Length)
-            //    _index = 0;
-
-            //textBlock.Text = tab[_index];
-            var btn = sender as Button;
-            btn.IsEnabled = false;
-            int it = 0;
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
-            timer.Tick += (sender2, args) =>
+            var btn = sender as Button;     
+            btn.IsEnabled = false;      //deactivation of button during work of method
+            int it = 0;                 //iterator
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(Period.Value) };     //Period animation clock, gets milisecs from Period slider
+            timer.Tick += (sender2, args) =>    
             {
-                if (it == tab.Length)
+                if (it >= stringTab.Length) 
                 {
-                    timer.Stop();
-                    textBlock.Text = "";
-                    btn.IsEnabled = true;
+                    timer.Stop();       //clock stop
+                    textBlock.Text = "";   //clean textblock
+                    btn.IsEnabled = true; //activation of button
                 }
                 else
                 {
-                    textBlock.Text = tab[it++];
+                    textBlock.Text = Text.WordsAmount(stringTab, Convert.ToInt32(Count.Value), it); //fill textblock given from slider Count amount of words from tab
+                    it += Convert.ToInt32(Count.Value); //next iteration
                 }
             };
             timer.Start();
         }
 
-        private void Button_Click_Clipboard(object sender, RoutedEventArgs e)
+        private void Button_Click_Clipboard(object sender, RoutedEventArgs e) //action from Wczytaj ze schowka button
         {
-            Text.cut_line stringTab;
-            stringTab = Text.separated_line(line);
-            tab = stringTab.words;
-        }
-
-        private void Period_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        private void Count_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        
+            line = Text.GetLineFromClipBoard(); //load line from clipboard
+            stringTab  = Text.SeparatedLine(line); //separate line into tab of strings           
+        }  
     }
 }
