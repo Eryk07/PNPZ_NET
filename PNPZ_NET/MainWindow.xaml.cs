@@ -26,7 +26,7 @@ namespace PNPZ_NET
             InitializeComponent();
         }
         private int _index = -1;
-        private string[]  tab = new string[]{ "Dupa","fiut","co Kurwa","jasne","zjeb","debil" };
+        private string[] tab = new string[] { "Dupa", "fiut", "co Kurwa", "jasne", "zjeb", "debil" };
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,12 +42,15 @@ namespace PNPZ_NET
             var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
             timer.Tick += (sender2, args) =>
             {
-                textBlock.Text = tab[it++];
                 if (it == tab.Length)
                 {
                     timer.Stop();
                     textBlock.Text = "";
                     btn.IsEnabled = true;
+                }
+                else
+                {
+                    textBlock.Text = tab[it++];
                 }
             };
             timer.Start();
