@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Title="FastReading" Height="200" Width="400">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=Explicit}" Width="238" Height="52" FontSize="36"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="238" Height="52" FontSize="36"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="262,136,0,0"/>
-       
-        <Button Content="Pobierz tekst" HorizontalAlignment="Left" Margin="187,139,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+        <Button Content="Start!" HorizontalAlignment="Center" Margin="157,121,160,5" VerticalAlignment="Center" Width="75" Click="Button_Click" RenderTransformOrigin="0.233,0.483" Height="43"/>
+        <Button Content="Wczytaj ze schowka" HorizontalAlignment="Left" Margin="262,111,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Click_Clipboard"/>
+
+
 
     </Grid>
 </Window>

@@ -8,7 +8,7 @@ namespace PNPZ_NET
 {
     class Text
     {
-       struct cut_line { public string[] words; public int count; };
+       public struct cut_line { public string[] words; public int count; };
         //string line(string filename)
         //{ //display one line
         //    ifstream file(filename.c_str()); //open file
@@ -41,7 +41,7 @@ namespace PNPZ_NET
         //    return i;
         //}
 
-        cut_line separated_line(string line)
+        public static cut_line separated_line(string line)
         {   //separating word from line
 
             int spaces = 0;               //counting spaces

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
+
 namespace PNPZ_NET
 {
     /// <summary>
@@ -25,8 +26,12 @@ namespace PNPZ_NET
         {
             InitializeComponent();
         }
-        private int _index = -1;
-        private string[]  tab = new string[]{ "Dupa","fiut","co Kurwa","jasne","zjeb","debil" };
+        // private int _index = -1;
+        //Text text = new Text();
+        private string line = "Wtyczka do Windowsa umożliwiająca wyświetlanie zaznaczonego tekstu metodą szybkiego czytania - tekst z dużą prędkością jest wyświetlany po kilka słów lub w formie wężyka. Wtyczka będzie korzystać z Windows Animation Manager.";
+        //Text.cut_line stringTab;
+        // stringTab = Text.separated_line(line);
+        private string[] tab = { "Dupa", "debil", "gamoń", "gapciok" };
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,19 +44,26 @@ namespace PNPZ_NET
             var btn = sender as Button;
             btn.IsEnabled = false;
             int it = 0;
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
             timer.Tick += (sender2, args) =>
             {
-                textBlock.Text = tab[it++];
                 if (it == tab.Length)
                 {
                     timer.Stop();
                     textBlock.Text = "";
                     btn.IsEnabled = true;
                 }
+                else
+                {
+                    textBlock.Text = tab[it++];
+                }
             };
             timer.Start();
         }
 
+        private void Button_Click_Clipboard(object sender, RoutedEventArgs e)
+        {
+            //tab=
+        }
     }
 }
