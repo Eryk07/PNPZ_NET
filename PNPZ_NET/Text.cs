@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PNPZ_NET
 {
     class Text
     {
-       public struct cut_line { public string[] words; public int count; };
+        public struct cut_line { public string[] words; public int count; };
         //string line(string filename)
         //{ //display one line
         //    ifstream file(filename.c_str()); //open file
@@ -52,7 +53,7 @@ namespace PNPZ_NET
             int words = spaces + 1;       //amount of words in line
             cut_line output = new cut_line();
 
-           string[] cutline= new string[words];
+            string[] cutline = new string[words];
 
             string tmp = "";
             int j = 0;
@@ -68,45 +69,52 @@ namespace PNPZ_NET
                 }
 
             }
-                cutline[j] = tmp;
+            cutline[j] = tmp;
 
-                output.words = cutline;
-                output.count = words;
+            output.words = cutline;
+            output.count = words;
 
-                return output;
+            return output;
         }
 
-            //void displaying(string filename)
-            //{  // display text
-            //    ifstream file(filename.c_str());
-            //    string line1;
-            //    int time = 500; //millisecond
-            //    if (!file.is_open())
-            //        cout << "there is no such a file or directory \n";      //if file doesn't exist
+        //void displaying(string filename)
+        //{  // display text
+        //    ifstream file(filename.c_str());
+        //    string line1;
+        //    int time = 500; //millisecond
+        //    if (!file.is_open())
+        //        cout << "there is no such a file or directory \n";      //if file doesn't exist
 
-            //    else if (file.eof())
-            //        cout << "file is empty";
+        //    else if (file.eof())
+        //        cout << "file is empty";
 
-            //    else
-            //        do
-            //        {
-            //            getline(file, line1);
-            //            cut_line input = separated_line(line1);
+        //    else
+        //        do
+        //        {
+        //            getline(file, line1);
+        //            cut_line input = separated_line(line1);
 
-            //            string* table = input.line;
-            //            int N = input.words;
+        //            string* table = input.line;
+        //            int N = input.words;
 
-            //            for (int i = 0; i < N; i++)
-            //            {
-            //                cout << table[i] << endl;
-            //                Sleep(time);
-            //                system("cls");
-            //            }
-            //            delete[] input.line;
-            //        } while (!(file.eof()));
+        //            for (int i = 0; i < N; i++)
+        //            {
+        //                cout << table[i] << endl;
+        //                Sleep(time);
+        //                system("cls");
+        //            }
+        //            delete[] input.line;
+        //        } while (!(file.eof()));
 
-            //    file.close();
-            //}
+        //    file.close();
+        //}
 
+        public string GetLineFromClipBoard()
+        {
+            var textFromClipBoard = Clipboard.GetText();
+            var firstLine = textFromClipBoard.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                .First();
+            return firstLine;
+        }
     }
 }
